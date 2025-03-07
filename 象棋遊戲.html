@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暗棋遊戲</title>
+    <style>
+        body {
+            background-color: bisque;
+        }
+
+        .title {
+            width: 400px;
+            height: 30px;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 棋盤設置 */
+        .board {
+            margin-left: auto;
+            margin-right: auto;
+            display: grid;
+            grid-template-columns: repeat(8, 80px);
+            /* 4x8 棋盤 */
+            grid-template-rows: repeat(4, 80px);
+            gap: 5px;
+            width: 700px;
+        }
+
+        /* 棋子（隱藏狀態） */
+        .piece {
+            width: 80px;
+            height: 80px;
+            background-color: burlywood;
+            border: 2px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* 顯示圖片 */
+        .piece img {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .revealed img {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">
+        <h1>歡迎來到暗棋實作</h1>
+    </div>
+    <div class="board" id="board"></div>
+
+    <script>
+        // 棋子圖片與數量
+        const pieceImages = {
+            "./game/general.png": 1,   // 將軍 x1
+            "./game/advisor.png": 2,   // 士 x2
+            "./game/elephant.png": 2,  // 象 x2
+            "./game/horse.png": 2,     // 馬 x2
+            "./game/chariot.png": 2,   // 車 x2
+            "./game/cannon.png": 2,    // 炮 x2
+            "game/soldier.png": 5,    // 卒 x5
+            "game/general1.png": 1,   // 元帥 x1
+            "game/advisor1.png": 2,   // 士 x2
+            "game/elephant1.png": 2,  // 象 x2
+            "game/horse1.png": 2,     // 馬 x2
+            "game/chariot1.png": 2,   // 車 x2
+            "game/cannon1.png": 2,    // 炮 x2
+            "game/soldier1.png": 5    // 卒 x5
+        };
+
+        // 產生隨機棋盤
+        const board = document.getElementById("board");
+        let pieces = [];
+
+        // 將所有棋子加入陣列
+        for (let img in pieceImages) {
+            for (let i = 0; i < pieceImages[img]; i++) {
+                pieces.push(img);
+            }
+        }
+
+        // 洗牌演算法 (Fisher-Yates Shuffle)
+        pieces.sort(() => Math.random() - 0.5);
+
+        // 創建 32 個棋子 (4x8)
+        for (let i = 0; i < 32; i++) {
+            let div = document.createElement("div");
+            div.classList.add("piece");
+
+            let img = document.createElement("img");
+            img.src = pieces[i];  // 隨機放置圖片
+            div.appendChild(img);
+
+            // 點擊翻開棋子
+            div.addEventListener("click", function () {
+                div.classList.add("revealed"); // 顯示圖片
+            });
+
+            board.appendChild(div);
+        }
+    </script>
+</body>
+
+</html>

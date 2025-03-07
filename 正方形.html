@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正方形網格</title>
+    <style>
+        /* 容器設置 Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 列，每列等寬 */
+            gap: 10px; /* 間距 */
+            width: 500px;
+            margin: auto;
+        }
+
+        /* 正方形設計 */
+        .square {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            border: 5px solid black;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid-container">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+    </div>
+
+</body>
+</html>
